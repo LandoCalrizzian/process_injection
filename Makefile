@@ -5,11 +5,12 @@ OBJDIR=obj
 SRCDIR=src
 EXE=main.exe
 
-all: main.o
-	$(CC) -o $(EXE) main.o
+all: $(OBJDIR)/main.o
+	$(CC) -o $(EXE) $(OBJDIR)/main.o
 
-main.o: src/main.c
-	$(CC) $(DEBUG) $(FLAGS) -c $(SRCDIR)/main.c
+$(OBJDIR)/main.o: $(SRCDIR)/main.c
+	$(CC) $(DEBUG) $(FLAGS) -c $(SRCDIR)/main.c -o $@
 
 clean:
-	rm -f *.o $(EXE)
+	rm -f $(OBJDIR)/*.o $(EXE)
+	rm -f *.o
